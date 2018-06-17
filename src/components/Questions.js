@@ -1,13 +1,39 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import Question from './Question';
+
 const questions = [
-	'Did you cycle today?',
-	'Did you do strength work today?',
-	'Did you do HIIT today?',
-	'Did you abstain from smoking?',
-	'Did you abstain from drinking?',
-	'Did you eat low carb food?',
+	{
+		text: 'Did you cycle today?',
+		answered: false,
+		answer: false,
+	},
+	{
+		text: 'Did you do strength work today?',
+		answered: false,
+		answer: false,
+	},
+	{
+		text: 'Did you do HIIT today?',
+		answered: false,
+		answer: false,
+	},
+	{
+		text: 'Did you abstain from smoking?',
+		answered: false,
+		answer: false,
+	},
+	{
+		text: 'Did you abstain from drinking?',
+		answered: false,
+		answer: false,
+	},
+	{
+		text: 'Did you eat low carb food?',
+		answered: false,
+		answer: false,
+	},
 ];
 
 const List = styled.ul`
@@ -15,30 +41,25 @@ const List = styled.ul`
 	list-style: none;
 `;
 
-const QuestionContainer = styled.div`
-	border: 1px solid #ddd;
-	padding: 1em;
-	margin: 1em;
-`;
-
-const questionElements = questions.map((q) => {
-	return (
-		<QuestionContainer>
-			<li>{q}</li>
-			<button className="pure-button">yeah</button>
-			<button className="pure-button">nah</button>
-		</QuestionContainer>
-	);
+const questionComponents = questions.map((q, i) => {
+	return <Question msg={q.text} index={i} answered={false} key={i} />;
 });
 
-class Header extends Component {
+class Questions extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			questions: questions,
+		};
+	}
 	render() {
 		return (
 			<div>
-				<List>{questionElements}</List>
+				<List>{questionComponents}</List>
+				<button>Submit</button>
 			</div>
 		);
 	}
 }
 
-export default Header;
+export default Questions;
