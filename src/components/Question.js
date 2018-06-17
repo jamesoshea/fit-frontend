@@ -8,12 +8,12 @@ const QuestionContainer = styled.div`
 `;
 
 class Question extends Component {
-	constructor(props) {
-		super(props);
+	constructor() {
+		super();
 		this.state = {
-			answered: props.answered,
+			answered: false,
 		};
-		this.answerQuestion = this.answerQuestion.bind(this);
+		this.answerQuestion.bind(this);
 	}
 	render() {
 		return (
@@ -21,10 +21,20 @@ class Question extends Component {
 				{!this.state.answered && (
 					<QuestionContainer>
 						<li>{this.props.msg}</li>
-						<button className="pure-button" onClick={this.answerQuestion}>
+						<button
+							className="pure-button"
+							onClick={() => {
+								this.answerQuestion(this.props.index, true);
+							}}
+						>
 							yeah
 						</button>
-						<button className="pure-button" onClick={this.answerQuestion}>
+						<button
+							className="pure-button"
+							onClick={() => {
+								this.answerQuestion(this.props.index, false);
+							}}
+						>
 							nah
 						</button>
 					</QuestionContainer>
@@ -32,10 +42,11 @@ class Question extends Component {
 			</div>
 		);
 	}
-	answerQuestion() {
+	answerQuestion(index, answer) {
 		this.setState({
 			answered: true,
 		});
+		this.props.handleAnswer(index, answer);
 	}
 }
 
