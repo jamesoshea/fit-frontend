@@ -88,9 +88,13 @@ class Questions extends Component {
 				'content-type': 'application/json',
 			},
 			method: 'POST',
-		}).then(() => {
-			console.log('hello');
-		});
+		})
+			.then(() => {
+				console.log('hello');
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}
 	render() {
 		return (
