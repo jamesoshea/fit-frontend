@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Questions from './components/Questions';
 import DataDisplay from './components/DataDisplay';
+import PreviousDays from './components/PreviousDays';
 
 class App extends Component {
 	constructor() {
@@ -39,7 +40,10 @@ class App extends Component {
 				<Header />
 				{!this.state.alreadySubmitted && <Questions />}
 				{this.state.alreadySubmitted && (
-					<DataDisplay todaysData={this.state.todaysData} />
+					<div>
+						<DataDisplay todaysData={this.state.todaysData} />
+						<PreviousDays previousData={this.state.previousData} />
+					</div>
 				)}
 			</div>
 		);
